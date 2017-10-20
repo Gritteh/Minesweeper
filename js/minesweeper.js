@@ -48,25 +48,32 @@ $(document).ready(function() {
         htmlArray.map((val, i) => {
             mineArea.append(val);
         });
-        // htmlArray[0].text("X").addClass("marked");
-        // htmlArray[5].text("X");
 
+        // Count for recording number of X's 
         let count = 0;
         let placementPast = [];
+        // Place the right number of mines
         while (count < mines) {
+            // Create random number using total number of cells
             let randomNumber = Math.floor((Math.random() * numberOfCells));
+            // Only use number if not already recorded in placementPast array
             if ($.inArray(randomNumber, placementPast) === -1) {
+                // Add number to array to mark that as used
                 placementPast.push(randomNumber);
-                $(".cell__" + randomNumber)
-                    .text("X")
-                    .addClass("marked");
+                
+                htmlArray[randomNumber].text("X").addClass("marked");
+                // $(".cell__" + randomNumber)
+                //     .text("X")
+                //     .addClass("marked");
                 console.log(randomNumber);
                 count++;
             } else {
+                // If number already used, continue the loop
                 continue;
             }
-            
         }
+
+        // use placements to add 1 to data("count") value of elements around X
     };
 
 });
