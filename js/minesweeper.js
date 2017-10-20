@@ -41,11 +41,32 @@ $(document).ready(function() {
         // Loop to generate the right number of cells
         for (let i = 0; i < numberOfCells; i++) {
             let cell = giveCellWithStyling(i, rows, columns);
+            // Add html to array for later reference
             htmlArray.push(cell);
         }
+        // Map HTML array to HTML
         htmlArray.map((val, i) => {
             mineArea.append(val);
         });
+        // htmlArray[0].text("X").addClass("marked");
+        // htmlArray[5].text("X");
+
+        let count = 0;
+        let placementPast = [];
+        while (count < mines) {
+            let randomNumber = Math.floor((Math.random() * numberOfCells));
+            if ($.inArray(randomNumber, placementPast) === -1) {
+                placementPast.push(randomNumber);
+                $(".cell__" + randomNumber)
+                    .text("X")
+                    .addClass("marked");
+                console.log(randomNumber);
+                count++;
+            } else {
+                continue;
+            }
+            
+        }
     };
 
 });
