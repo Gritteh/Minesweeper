@@ -1,0 +1,19 @@
+.number__form .gen__form {
+  padding: 20px 20px;
+  margin-bottom: 30px; }
+
+.minesweeper__area {
+  position: absolute;
+  background-color: grey;
+  width: 100%;
+  height: 100%; }
+  .minesweeper__area .cell {
+    position: absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    background-color: pink; }
+
+/*# sourceMappingURL=styles.css.map */
