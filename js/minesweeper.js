@@ -5,6 +5,7 @@ $(document).ready(function() {
     let colInput = $("#columns");
     let mineInput = $("#number_of_mines");
 
+    // Area for minesweeper table
     let mineArea = $(".minesweeper__area");
 
     // When form submitted
@@ -134,6 +135,7 @@ $(document).ready(function() {
     // Function to go through html and display numbers when appropriate
     const displayNumbers = () => {
         htmlArray.map((val, i) => {
+            // Only if element isn't a mine and data("clue") value is more than 0
             if (!val.hasClass("marked") && val.data("clue") > 0) {
                 let number = val.data("clue");
                 val.text(number).addClass("clue__" + number);
