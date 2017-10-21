@@ -38,6 +38,11 @@ $(document).ready(function() {
 
     // Generate minesweeper table function, takes number of rows, columns and mines as params
     const minesweeperGenerate = (rows, columns, mines) => {
+        // Reset html array if there is previous minesweeper
+        htmlArray = [];
+        // Remove any minesweeper elements if there
+        mineArea.children().remove();
+        
         // Calculate total number of cells
         let numberOfCells = rows * columns;
 
@@ -91,6 +96,7 @@ $(document).ready(function() {
 
     // Function to give indexes of surrounding cells (3x3 around cell)
     const giveSurroundingCells = (index, columns, totalCells) => {
+        // Array to hold surrounding cell indexes
         let indexArray = [];
 
         // Row with mine
@@ -107,14 +113,22 @@ $(document).ready(function() {
         let bottomRight = index + +columns + 1;
 
         // Only add index to array if they are on the correct row in relation to the mine
-        markedRow === Math.floor(topLeft / columns) + 1 ? indexArray.push(topLeft) : null;
-        markedRow === Math.floor(topMiddle / columns) + 1 ? indexArray.push(topMiddle) : null;
-        markedRow === Math.floor(topRight / columns) + 1 ? indexArray.push(topRight) : null;
-        markedRow === Math.floor(left / columns) ? indexArray.push(left) : null;
-        markedRow === Math.floor(right / columns) ? indexArray.push(right) : null;
-        markedRow === Math.floor(bottomLeft / columns) - 1 ? indexArray.push(bottomLeft) : null;
-        markedRow === Math.floor(bottomMiddle / columns) - 1 ? indexArray.push(bottomMiddle) : null;
-        markedRow === Math.floor(bottomRight / columns) - 1 ? indexArray.push(bottomRight) : null;
+        // Function checks if surrounding cell is where it should be, and therefore should be counted
+        // Relative row +1 if a TOP cell (should be row above), 0 if left/right, -1 if BOTTOM cell (should be row after)
+        const checkRow = (elementIndex, relativeRow) => {
+            // If true, then surrounding cell is on CORRECT row, therefore it is actually surrounding
+            markedRow === Math.floor(elementIndex / columns) + relativeRow ? indexArray.push(elementIndex) : null;
+        };
+
+        // Call for each surrounding cell index
+        checkRow(topLeft, +1);
+        checkRow(topMiddle, +1);
+        checkRow(topRight, +1);
+        checkRow(left, 0);
+        checkRow(right, 0);
+        checkRow(bottomLeft, -1);
+        checkRow(bottomMiddle, -1);
+        checkRow(bottomRight, -1);
 
         // Filter to remove negative indexes and ones that are too high (don't exist)
         let filteredArray = indexArray.filter((number) => {
