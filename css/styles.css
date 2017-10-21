@@ -1,10 +1,12 @@
+body {
+  background-color: #e0e0e0; }
+
 .number__form .gen__form {
   padding: 20px 20px;
   margin-bottom: 30px; }
 
 .minesweeper__area {
   position: absolute;
-  background-color: grey;
   width: 100%;
   height: 100%; }
   .minesweeper__area .cell {
@@ -14,8 +16,21 @@
     height: 30px;
     border: 1px solid black;
     box-sizing: border-box;
-    background-color: pink;
+    background-color: #00d6bd;
     text-align: center;
-    font-size: 1.3em; }
+    font-size: 1.3em;
+    color: black; }
+  .minesweeper__area .clue__1 {
+    color: #1b5e20; }
+  .minesweeper__area .clue__2 {
+    color: #e6ec31; }
+  .minesweeper__area .clue__3 {
+    color: #ef6c00; }
+  .minesweeper__area .clue__4 {
+    color: #673ab7; }
+  .minesweeper__area .clue__5 {
+    color: #ad1457; }
+  .minesweeper__area .clue__6 {
+    color: #f44336; }
 
 /*# sourceMappingURL=styles.css.map */

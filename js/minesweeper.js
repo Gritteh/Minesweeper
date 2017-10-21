@@ -12,7 +12,6 @@ $(document).ready(function() {
         let numberOfRows = rowInput.val();
         let numberOfCols = colInput.val();
         let numberOfMines = mineInput.val();
-        console.log("rows: " + numberOfRows + "cols: " + numberOfCols + "mines: " + numberOfMines);
 
 
         minesweeperGenerate(numberOfRows, numberOfCols, numberOfMines);
@@ -24,8 +23,8 @@ $(document).ready(function() {
         let cell = $("<div/>")
             .addClass("cell cell__" + index)
             .css({
-                left: (index % columns) * 29 + "px",
-                top: Math.floor(index / columns) * 29 + "px"
+                left: (index % columns) * 29 + 20 + "px",
+                top: Math.floor(index / columns) * 29 + 20 + "px"
             });
 
         return cell;
@@ -63,7 +62,6 @@ $(document).ready(function() {
                 placementPast.push(randomNumber);
                 
                 htmlArray[randomNumber].text("X").addClass("marked");
-                console.log(randomNumber);
                 count++;
             } else {
                 // If number already used, continue the loop
@@ -88,7 +86,7 @@ $(document).ready(function() {
         let indexArray = [];
 
         let markedRow = Math.floor(index / columns);
-        console.log("markedrow: " + markedRow);
+
         let topLeft = index - columns - 1;
         let topMiddle = index - columns;
         let topRight = index - columns + 1;
@@ -112,16 +110,11 @@ $(document).ready(function() {
             return (number >= 0 && number < totalCells);
         });
         
-        console.log(indexArray);
-        console.log(filteredArray);
-        
         return filteredArray;
     };
-    console.log(giveSurroundingCells(5, 10, 100));
 
     // Function to add to one to data("clue") of cells surrounding mines
     const addToData = (arrayOfIndexes) => {
-        console.log(arrayOfIndexes);
         arrayOfIndexes.map((val, i) => {
             htmlArray[val].data("clue", htmlArray[val].data("clue") + 1);
         });
@@ -130,10 +123,9 @@ $(document).ready(function() {
     // Function to go through html and display numbers when appropriate
     const displayNumbers = () => {
         htmlArray.map((val, i) => {
-            console.log(+val.data("clue"));
             if (!val.hasClass("marked") && val.data("clue") > 0) {
-                val.text(val.data("clue"));
-                console.log(val.data("clue"));
+                let number = val.data("clue");
+                val.text(number).addClass("clue__" + number);
             }
         });
     };
