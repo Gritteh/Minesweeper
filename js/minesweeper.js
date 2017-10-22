@@ -5,6 +5,8 @@ $(document).ready(function() {
     let colInput = $("#columns");
     let mineInput = $("#number_of_mines");
 
+    let cols;
+
     // Area for minesweeper table
     let mineArea = $(".minesweeper__area");
 
@@ -16,7 +18,7 @@ $(document).ready(function() {
         let numberOfRows = rowInput.val();
         let numberOfCols = colInput.val();
         let numberOfMines = mineInput.val();
-
+        cols = numberOfCols;
         // Generate minesweeper table
         minesweeperGenerate(numberOfRows, numberOfCols, numberOfMines);
     });
